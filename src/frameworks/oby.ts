@@ -6,20 +6,20 @@ export const obyFramework: ReactiveFramework = {
   signal: (initialValue) => {
     const observable = $(initialValue);
     return {
-      write: (v) => observable(v),
-      read: () => observable(),
+      write: observable,
+      read: observable,
     };
   },
   computed: (fn) => {
     const memo = $.memo(fn);
     return {
-      read: () => memo(),
+      read: memo,
     };
   },
-  effect: (fn) => $.effect(fn),
+  effect: $.effect,
   withBatch: (fn) => {
     fn();
     $.tick();
   },
-  withBuild: (fn) => $.root(fn),
+  withBuild: $.root,
 };
