@@ -1,8 +1,17 @@
+import { writeFileSync } from "fs";
 import { TestConfig } from "./frameworkTypes";
 import { TestResult, TimingResult } from "./perfTests";
 
+const results = [];
+
+process.on("exit", () => {
+  results.shift();
+  writeFileSync("./results.json", JSON.stringify(results, null, 2));
+  require("./results.js");
+});
 export function logPerfResult(row: PerfRowStrings): void {
   const line = Object.values(trimColumns(row)).join(" , ");
+  results.push(row);
   console.log(line);
 }
 
@@ -30,7 +39,7 @@ export function perfReportHeaders(): PerfRowStrings {
 export function perfRowStrings(
   frameworkName: string,
   config: TestConfig,
-  timed: TimingResult<TestResult>
+  timed: TimingResult<TestResult>,
 ): PerfRowStrings {
   const { timing } = timed;
 
