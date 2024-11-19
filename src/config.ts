@@ -13,21 +13,27 @@ import { solidFramework } from "./frameworks/solid";
 import { usignalFramework } from "./frameworks/uSignal";
 import { vueReactivityFramework } from "./frameworks/vueReactivity";
 import { xReactivityFramework } from "./frameworks/xReactivity";
+import { potaFramework } from "./frameworks/pota.js";
+import { solidSignalsFramework } from "./frameworks/solid-signals.js";
+
+const testPullCounts = false;
 
 export const frameworkInfo: FrameworkInfo[] = [
-  { framework: angularFramework, testPullCounts: true },
-  { framework: compostateFramework, testPullCounts: true },
-  // { framework: kairoFramework, testPullCounts: true },
-  // { framework: mobxFramework, testPullCounts: true },
-  { framework: molWireFramework, testPullCounts: true },
-  { framework: obyFramework, testPullCounts: true },
-  { framework: preactSignalFramework, testPullCounts: true },
-  { framework: reactivelyFramework, testPullCounts: true },
+  // { framework: angularFramework, testPullCounts },
+  // { framework: compostateFramework, testPullCounts },
+  // { framework: kairoFramework, testPullCounts },
+  // { framework: mobxFramework, testPullCounts },
+  // { framework: molWireFramework, testPullCounts },
+  { framework: obyFramework, testPullCounts },
+  { framework: preactSignalFramework, testPullCounts },
+  { framework: reactivelyFramework, testPullCounts },
   { framework: sFramework },
   { framework: solidFramework }, // solid can't testPullCounts because batch executes all leaf nodes even if unread
-  { framework: usignalFramework, testPullCounts: true },
-  { framework: vueReactivityFramework, testPullCounts: true },
-  { framework: xReactivityFramework, testPullCounts: true },
+  // { framework: solidSignalsFramework }, // solid can't testPullCounts because batch executes all leaf nodes even if unread
+  { framework: potaFramework },
+  { framework: usignalFramework, testPullCounts },
+  { framework: vueReactivityFramework, testPullCounts },
+  { framework: xReactivityFramework, testPullCounts },
 ];
 
 export const perfTests: TestConfig[] = [
